@@ -61,13 +61,9 @@ export default function ConstruccionPage() {
           caption: "5. Resultado: espacio listo para funcionar",
         },
       ]}
-      kind="Construcción y remodelación"
-      whatsappMessage="Hola UnoDev, quisiera cotizar una obra o remodelación."
-      cross={{
-        href: "/tecnologia",
-        title: "¿Necesitas también una solución tecnológica?",
-        text: "Sitios web, sistemas de gestión y automatización, con el mismo estándar.",
-      }}
+      area="construccion"
+      respaldo="Entregamos cada obra con garantía y soporte posterior, para que el espacio siga funcionando como debe."
+      whatsappMessage="Hola UnoDev, quisiera cotizar una obra o remodelación. (Enviado desde la página de Construcción)"
     />
   );
 }

@@ -32,13 +32,9 @@ export default function TecnologiaPage() {
         },
       ]}
       projectsNote="Estamos preparando los primeros casos de sistemas y sitios web."
-      kind="Soluciones tecnológicas"
-      whatsappMessage="Hola UnoDev, quisiera cotizar una solución tecnológica."
-      cross={{
-        href: "/construccion",
-        title: "¿Necesitas también remodelar o terminar un espacio?",
-        text: "Obras, remodelaciones y acabados, con el mismo estándar.",
-      }}
+      area="tecnologia"
+      respaldo="Entregamos cada solución con garantía y soporte posterior, para que siga funcionando y evolucione con tu negocio."
+      whatsappMessage="Hola UnoDev, quisiera cotizar una solución tecnológica. (Enviado desde la página de Tecnología)"
     />
   );
 }

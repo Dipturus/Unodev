@@ -1,9 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export type Slide = { src: string; alt: string; caption: string };
+
+const AUTOPLAY_MS = 5000;
 
 const arrowClass =
   "absolute top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-xl font-bold text-ink shadow transition hover:bg-white";
@@ -11,16 +13,36 @@ const arrowClass =
 export function Carousel({ slides }: { slides: Slide[] }) {
   const track = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
+  // El avance automático se apaga para siempre en cuanto alguien interactúa.
+  const [auto, setAuto] = useState(true);
+
+  useEffect(() => {
+    if (!auto || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => {
+      const el = track.current;
+      if (!el) return;
+      const last = Math.round(el.scrollLeft / el.clientWidth) >= slides.length - 1;
+      el.scrollTo({ left: last ? 0 : el.scrollLeft + el.clientWidth, behavior: "smooth" });
+    }, AUTOPLAY_MS);
+    return () => clearInterval(id);
+  }, [auto, slides.length]);
 
   function go(dir: 1 | -1) {
+    setAuto(false);
     const el = track.current;
     if (el) el.scrollBy({ left: dir * el.clientWidth, behavior: "smooth" });
   }
+
+  const stopAuto = () => setAuto(false);
 
   return (
     <div className="relative" role="region" aria-roledescription="carrusel" aria-label="Proyectos">
       <div
         ref={track}
+        onPointerDown={stopAuto}
+        onTouchStart={stopAuto}
+        onWheel={stopAuto}
+        onFocus={stopAuto}
         onScroll={(e) => {
           const el = e.currentTarget;
           setIndex(Math.round(el.scrollLeft / el.clientWidth));

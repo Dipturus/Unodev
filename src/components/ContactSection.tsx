@@ -1,9 +1,10 @@
 import { site, whatsappUrl } from "@/config/site";
-import { ContactForm, type ProjectKind } from "./ContactForm";
+import { ContactForm, type Area } from "./ContactForm";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 
-type Props = { kind?: ProjectKind; message?: string };
+type Props = { area: Area; message: string };
 
-export function ContactSection({ kind, message = "Hola UnoDev, quisiera conversar sobre un proyecto." }: Props) {
+export function ContactSection({ area, message }: Props) {
   return (
     <section id="contacto" className="bg-white">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 lg:grid-cols-2">
@@ -15,13 +16,14 @@ export function ContactSection({ kind, message = "Hola UnoDev, quisiera conversa
           </p>
           <a
             href={whatsappUrl(message)}
-            className="mt-8 inline-block font-semibold text-brand hover:underline"
+            className="mt-8 inline-flex items-center gap-2 font-semibold text-brand hover:underline"
           >
+            <WhatsAppIcon className="h-5 w-5" />
             Escribir directo por WhatsApp →
           </a>
           {site.email && <p className="mt-3 text-muted">{site.email}</p>}
         </div>
-        <ContactForm defaultKind={kind} />
+        <ContactForm area={area} />
       </div>
     </section>
   );

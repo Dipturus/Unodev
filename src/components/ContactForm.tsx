@@ -2,24 +2,36 @@
 
 import { useState } from "react";
 import { whatsappUrl } from "@/config/site";
+import { WhatsAppIcon } from "./WhatsAppIcon";
 
-export type ProjectKind = "Construcción y remodelación" | "Soluciones tecnológicas" | "Ambas";
+export type Area = "construccion" | "tecnologia";
+
+// Cada página de área identifica su origen en el mensaje que llega por WhatsApp.
+const areaInfo: Record<Area, { intro: string; origin: string }> = {
+  construccion: {
+    intro: "quisiera cotizar una obra o remodelación",
+    origin: "Página de Construcción y remodelación de espacios",
+  },
+  tecnologia: {
+    intro: "quisiera cotizar una solución tecnológica",
+    origin: "Página de Soluciones tecnológicas",
+  },
+};
 
 const inputClass =
   "w-full rounded-md border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20";
 
 // Arma el mensaje de primer contacto y lo abre en WhatsApp: no hay backend ni se guardan datos.
-export function ContactForm({ defaultKind = "Ambas" }: { defaultKind?: ProjectKind }) {
+export function ContactForm({ area }: { area: Area }) {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
-  const [kind, setKind] = useState<ProjectKind>(defaultKind);
   const [detail, setDetail] = useState("");
 
   const message = [
-    "Hola UnoDev, quisiera cotizar un proyecto.",
+    `Hola UnoDev, ${areaInfo[area].intro}.`,
+    `*Origen:* ${areaInfo[area].origin}`,
     `*Nombre:* ${name || "-"}`,
     `*Empresa:* ${company || "-"}`,
-    `*Tipo de proyecto:* ${kind}`,
     detail && `*Requerimiento:* ${detail}`,
   ]
     .filter(Boolean)
@@ -44,21 +56,14 @@ export function ContactForm({ defaultKind = "Ambas" }: { defaultKind?: ProjectKi
         </label>
       </div>
       <label className="block text-sm font-medium text-ink">
-        Tipo de proyecto
-        <select value={kind} onChange={(e) => setKind(e.target.value as ProjectKind)} className={`${inputClass} mt-1`}>
-          <option>Construcción y remodelación</option>
-          <option>Soluciones tecnológicas</option>
-          <option>Ambas</option>
-        </select>
-      </label>
-      <label className="block text-sm font-medium text-ink">
         Cuéntanos tu requerimiento
         <textarea rows={4} value={detail} onChange={(e) => setDetail(e.target.value)} className={`${inputClass} mt-1`} />
       </label>
       <button
         type="submit"
-        className="w-full rounded-md bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-dark sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-dark sm:w-auto"
       >
+        <WhatsAppIcon className="h-5 w-5" />
         Continuar por WhatsApp
       </button>
     </form>

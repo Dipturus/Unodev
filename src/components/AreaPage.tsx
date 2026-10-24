@@ -1,8 +1,7 @@
-import Link from "next/link";
 import { whatsappUrl } from "@/config/site";
 import { Carousel, type Slide } from "./Carousel";
 import { ContactSection } from "./ContactSection";
-import type { ProjectKind } from "./ContactForm";
+import type { Area } from "./ContactForm";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Isotipo } from "./Isotipo";
@@ -17,9 +16,9 @@ type Props = {
   projectsTitle?: string;
   slides?: Slide[];
   slidesNote?: string;
-  kind: ProjectKind;
+  area: Area;
+  respaldo: string;
   whatsappMessage: string;
-  cross: { href: string; title: string; text: string };
 };
 
 export function AreaPage({
@@ -31,13 +30,13 @@ export function AreaPage({
   projectsTitle = "Proyectos",
   slides,
   slidesNote,
-  kind,
+  area,
+  respaldo,
   whatsappMessage,
-  cross,
 }: Props) {
   return (
     <>
-      <Header />
+      <Header whatsappMessage={whatsappMessage} />
       <main>
         <section className="relative overflow-hidden">
           <Isotipo
@@ -81,7 +80,7 @@ export function AreaPage({
           </div>
         </section>
 
-        <Method />
+        <Method respaldo={respaldo} />
 
         <section id="proyectos" className="border-b border-line">
           <div className="mx-auto max-w-6xl px-5 py-20">
@@ -108,22 +107,7 @@ export function AreaPage({
           </div>
         </section>
 
-        <section className="bg-paper">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-14 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-lg font-extrabold">{cross.title}</p>
-              <p className="mt-1 text-muted">{cross.text}</p>
-            </div>
-            <Link
-              href={cross.href}
-              className="shrink-0 font-semibold text-brand hover:underline"
-            >
-              Conocer más →
-            </Link>
-          </div>
-        </section>
-
-        <ContactSection kind={kind} message={whatsappMessage} />
+        <ContactSection area={area} message={whatsappMessage} />
       </main>
       <Footer />
     </>
