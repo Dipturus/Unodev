@@ -31,7 +31,36 @@ export default function ConstruccionPage() {
           text: "Organizamos y supervisamos cada etapa para cumplir plazos y estándares de calidad.",
         },
       ]}
-      projectsNote="Estamos preparando los primeros casos de obras y remodelaciones."
+      projectsTitle="Así trabajamos"
+      projectsNote="Del montaje de tabiques y cielos a las terminaciones finales: las etapas de una remodelación de un local comercial."
+      slidesNote="Imágenes ilustrativas."
+      slides={[
+        {
+          src: "/proyectos/cafeteria-1-estructura.jpg",
+          alt: "Cuadrilla instalando tabiques metálicos, cielos y cableado en un piso de oficinas",
+          caption: "1. Estructura: tabiquería, cielos e instalaciones",
+        },
+        {
+          src: "/proyectos/cafeteria-2-obra-gruesa.jpg",
+          alt: "Mesón de cafetería en obra gruesa con instalaciones sanitarias a la vista",
+          caption: "2. Obra gruesa: mesones e instalaciones",
+        },
+        {
+          src: "/proyectos/cafeteria-3-avance.jpg",
+          alt: "Cuadrilla trabajando en una cafetería con muros pintados y mesón terminado",
+          caption: "3. Avance: muros, mesón y carpintería",
+        },
+        {
+          src: "/proyectos/cafeteria-4-terminaciones.jpg",
+          alt: "Instalación de cerámica en el piso de una cafetería con muros verdes",
+          caption: "4. Terminaciones: pisos, pintura e iluminación",
+        },
+        {
+          src: "/proyectos/cafeteria-5-resultado.jpg",
+          alt: "Cafetería terminada con clientes, mesón curvo y grandes ventanales",
+          caption: "5. Resultado: espacio listo para funcionar",
+        },
+      ]}
       kind="Construcción y remodelación"
       whatsappMessage="Hola UnoDev, quisiera cotizar una obra o remodelación."
       cross={{

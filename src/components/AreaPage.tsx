@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { whatsappUrl } from "@/config/site";
+import { Carousel, type Slide } from "./Carousel";
 import { ContactSection } from "./ContactSection";
 import type { ProjectKind } from "./ContactForm";
 import { Footer } from "./Footer";
@@ -13,6 +14,9 @@ type Props = {
   intro: string;
   services: { title: string; text: string }[];
   projectsNote: string;
+  projectsTitle?: string;
+  slides?: Slide[];
+  slidesNote?: string;
   kind: ProjectKind;
   whatsappMessage: string;
   cross: { href: string; title: string; text: string };
@@ -24,6 +28,9 @@ export function AreaPage({
   intro,
   services,
   projectsNote,
+  projectsTitle = "Proyectos",
+  slides,
+  slidesNote,
   kind,
   whatsappMessage,
   cross,
@@ -78,19 +85,26 @@ export function AreaPage({
 
         <section id="proyectos" className="border-b border-line">
           <div className="mx-auto max-w-6xl px-5 py-20">
-            <h2 className="text-3xl font-extrabold tracking-tight">Proyectos</h2>
+            <h2 className="text-3xl font-extrabold tracking-tight">{projectsTitle}</h2>
             <p className="mt-3 max-w-2xl text-muted">{projectsNote}</p>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {[0, 1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="flex aspect-[4/3] flex-col items-center justify-center rounded-lg border border-dashed border-line bg-white text-center"
-                >
-                  <Isotipo color="#1D5A91" className="h-10 w-auto opacity-30" />
-                  <p className="mt-4 text-xs text-muted/70">Próximamente</p>
-                </div>
-              ))}
-            </div>
+            {slides ? (
+              <div className="mt-12">
+                <Carousel slides={slides} />
+                {slidesNote && <p className="mt-1 text-center text-xs text-muted/70">{slidesNote}</p>}
+              </div>
+            ) : (
+              <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {[0, 1, 2].map((i) => (
+                  <div
+                    key={i}
+                    className="flex aspect-[4/3] flex-col items-center justify-center rounded-lg border border-dashed border-line bg-white text-center"
+                  >
+                    <Isotipo color="#1D5A91" className="h-10 w-auto opacity-30" />
+                    <p className="mt-4 text-xs text-muted/70">Próximamente</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </section>
 
