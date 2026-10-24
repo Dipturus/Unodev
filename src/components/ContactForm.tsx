@@ -3,21 +3,23 @@
 import { useState } from "react";
 import { whatsappUrl } from "@/config/site";
 
+export type ProjectKind = "Construcción y remodelación" | "Soluciones tecnológicas" | "Ambas";
+
 const inputClass =
   "w-full rounded-md border border-line bg-white px-3 py-2.5 text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20";
 
 // Arma el mensaje de primer contacto y lo abre en WhatsApp: no hay backend ni se guardan datos.
-export function ContactForm() {
+export function ContactForm({ defaultKind = "Ambas" }: { defaultKind?: ProjectKind }) {
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
-  const [kind, setKind] = useState("Infraestructura");
+  const [kind, setKind] = useState<ProjectKind>(defaultKind);
   const [detail, setDetail] = useState("");
 
   const message = [
     "Hola UnoDev, quisiera cotizar un proyecto.",
     `*Nombre:* ${name || "-"}`,
     `*Empresa:* ${company || "-"}`,
-    `*Tipo de solución:* ${kind}`,
+    `*Tipo de proyecto:* ${kind}`,
     detail && `*Requerimiento:* ${detail}`,
   ]
     .filter(Boolean)
@@ -42,10 +44,10 @@ export function ContactForm() {
         </label>
       </div>
       <label className="block text-sm font-medium text-ink">
-        Tipo de solución
-        <select value={kind} onChange={(e) => setKind(e.target.value)} className={`${inputClass} mt-1`}>
-          <option>Infraestructura</option>
-          <option>Tecnología</option>
+        Tipo de proyecto
+        <select value={kind} onChange={(e) => setKind(e.target.value as ProjectKind)} className={`${inputClass} mt-1`}>
+          <option>Construcción y remodelación</option>
+          <option>Soluciones tecnológicas</option>
           <option>Ambas</option>
         </select>
       </label>

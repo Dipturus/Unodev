@@ -8,9 +8,9 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "UnoDev | Infraestructura y tecnología",
+  title: "UnoDev | Construcción y soluciones tecnológicas",
   description:
-    "Obras menores, acabado de edificios y desarrollo de soluciones tecnológicas a medida para pequeñas y medianas empresas.",
+    "Remodelaciones, terminaciones de edificios y desarrollo de software a medida para pymes en Chile.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
