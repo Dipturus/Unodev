@@ -1,0 +1,13 @@
+type Props = { className?: string; color?: string };
+
+export function Isotipo({ className, color = "#1D5A91" }: Props) {
+  return (
+    <svg viewBox="0 0 97 100" fill={color} className={className} aria-hidden="true">
+      <path
+        fillRule="evenodd"
+        d="M0 0H44L66 50L44 100H0Z M16 16H43.3V28H28V72H43.3V84H16Z"
+      />
+      <path d="M53.6 0H71.6L96.9 50L72.9 100H53.6L77.6 50Z" />
+    </svg>
+  );
+}
