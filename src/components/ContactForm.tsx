@@ -61,7 +61,7 @@ export function ContactForm({ area }: { area: Area }) {
       </label>
       <button
         type="submit"
-        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-brand px-5 py-3 font-semibold text-white transition hover:bg-brand-dark sm:w-auto"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-md bg-whatsapp-dark px-5 py-3 font-semibold text-white transition hover:bg-whatsapp-darker sm:w-auto"
       >
         <WhatsAppIcon className="h-5 w-5" />
         Continuar por WhatsApp

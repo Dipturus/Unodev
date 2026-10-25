@@ -7,6 +7,9 @@
   --color-paper: #f5f4f0;
   --color-muted: #6b6b66;
   --color-line: #dedcd4;
+  --color-whatsapp: #25d366;
+  --color-whatsapp-dark: #128c7e;
+  --color-whatsapp-darker: #0f7a6d;
   --font-sans: var(--font-montserrat);
 }
 

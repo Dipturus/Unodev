@@ -18,7 +18,7 @@ export function ContactSection({ area, message }: Props) {
             href={whatsappUrl(message)}
             className="mt-8 inline-flex items-center gap-2 font-semibold text-brand hover:underline"
           >
-            <WhatsAppIcon className="h-5 w-5" />
+            <WhatsAppIcon className="h-5 w-5 text-whatsapp" />
             Escribir directo por WhatsApp →
           </a>
           {site.email && <p className="mt-3 text-muted">{site.email}</p>}
